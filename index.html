@@ -1,710 +1,1091 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Items for Sale</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #FAF8F4;
-      --card: #FFFFFF;
-      --text: #1C1C1C;
-      --muted: #7A7A7A;
-      --accent: #E07B2A;
-      --accent-hover: #C96A1A;
-      --border: #ECECEC;
-      --tag-bg: #FFF3E8;
-      --tag-text: #B85F10;
-      --sold: #E8E8E8;
-      --sold-text: #AAAAAA;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Items for Sale</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #faf8f4;
+        --card: #ffffff;
+        --text: #1c1c1c;
+        --muted: #7a7a7a;
+        --accent: #e07b2a;
+        --accent-hover: #c96a1a;
+        --border: #ececec;
+        --tag-bg: #fff3e8;
+        --tag-text: #b85f10;
+        --sold: #e8e8e8;
+        --sold-text: #aaaaaa;
+      }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
 
-    /* HERO HEADER */
-    header {
-      background: var(--text);
-      color: #FAF8F4;
-      padding: 48px 24px 40px;
-      text-align: center;
-    }
+      /* HERO HEADER */
+      header {
+        background: var(--text);
+        color: #faf8f4;
+        padding: 48px 24px 40px;
+        text-align: center;
+      }
 
-    header h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 12px;
-    }
+      header h1 {
+        font-family: "Inter", sans-serif;
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 12px;
+      }
 
-    header h1 span {
-      color: var(--accent);
-    }
+      header h1 span {
+        color: var(--accent);
+      }
 
-    .header-meta {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 24px;
-      margin-top: 20px;
-      font-size: 0.875rem;
-      color: #CCCCCC;
-      font-weight: 300;
-    }
+      .header-meta {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-top: 20px;
+        font-size: 0.875rem;
+        color: #cccccc;
+        font-weight: 300;
+      }
 
-    .header-meta span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+      .header-meta span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
 
-    .header-meta .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: inline-block;
-    }
+      .header-meta .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        display: inline-block;
+      }
 
-    /* ANNOUNCEMENT BAR */
-    .announcement {
-      background: var(--accent);
-      color: white;
-      text-align: center;
-      padding: 10px 24px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
+      /* ANNOUNCEMENT BAR */
+      .announcement {
+        background: var(--accent);
+        color: white;
+        text-align: center;
+        padding: 10px 24px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
 
-    /* MAIN GRID */
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 48px 20px 80px;
-    }
+      /* MAIN GRID */
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 48px 20px 80px;
+      }
 
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
+      .section-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+      }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 56px;
-    }
-
-    /* CARD */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-    }
-
-    .card.sold {
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    .card-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      background: #F0EDE8;
-    }
-
-    .card-img-placeholder {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: #F0EDE8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .card-body {
-      padding: 18px 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .card-tag {
-      display: inline-block;
-      background: var(--tag-bg);
-      color: var(--tag-tag-text, var(--tag-text));
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 3px 8px;
-      border-radius: 4px;
-      width: fit-content;
-    }
-
-    .card-tag.sold-tag {
-      background: var(--sold);
-      color: var(--sold-text);
-    }
-
-    .card-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      line-height: 1.3;
-      color: #111111;
-    }
-
-    .card-condition {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .card-pickup {
-      padding: 10px 20px;
-      font-size: 0.75rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .card-pickup-row {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .card-pickup-row .icon {
-      font-size: 0.7rem;
-      width: 14px;
-    }
-
-    .card-footer {
-      padding: 14px 20px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--border);
-      margin-top: auto;
-    }
-
-    .card-price {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #111111;
-    }
-
-    .card-price span {
-      font-size: 0.75rem;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 400;
-      color: var(--muted);
-      margin-left: 3px;
-    }
-
-    .btn-dm {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 6px;
-      transition: background 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .btn-dm:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-sold {
-      display: inline-block;
-      background: var(--sold);
-      color: var(--sold-text);
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: not-allowed;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--text);
-      color: #999;
-      text-align: center;
-      padding: 32px 24px;
-      font-size: 0.8rem;
-      font-weight: 300;
-    }
-
-    footer strong {
-      color: var(--accent);
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
       .grid {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 56px;
+      }
+
+      /* CARD */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      }
+
+      .card.sold {
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .card-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+        background: #f0ede8;
+      }
+
+      .card-img-placeholder {
+        width: 100%;
+        aspect-ratio: 4/3;
+        background: #f0ede8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .card-body {
+        padding: 18px 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .card-tag {
+        display: inline-block;
+        background: var(--tag-bg);
+        color: var(--tag-tag-text, var(--tag-text));
+        font-size: 0.7rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 3px 8px;
+        border-radius: 4px;
+        width: fit-content;
+      }
+
+      .card-tag.sold-tag {
+        background: var(--sold);
+        color: var(--sold-text);
+      }
+
+      .card-title {
+        font-family: "Inter", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: #111111;
+      }
+
+      .card-condition {
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .card-pickup {
+        padding: 10px 20px;
+        font-size: 0.75rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .card-pickup-row {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .card-pickup-row .icon {
+        font-size: 0.7rem;
+        width: 14px;
+      }
+
+      .card-footer {
+        padding: 14px 20px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+        margin-top: auto;
+      }
+
+      .card-price {
+        font-family: "Inter", sans-serif;
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #111111;
+      }
+
+      .card-price span {
+        font-size: 0.75rem;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+        color: var(--muted);
+        margin-left: 3px;
+      }
+
+      .btn-dm {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: background 0.15s ease;
+        white-space: nowrap;
+      }
+
+      .btn-dm:hover {
+        background: var(--accent-hover);
+      }
+
+      .btn-sold {
+        display: inline-block;
+        background: var(--sold);
+        color: var(--sold-text);
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: not-allowed;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--text);
+        color: #999;
+        text-align: center;
+        padding: 32px 24px;
+        font-size: 0.8rem;
+        font-weight: 300;
+      }
+
+      footer strong {
+        color: var(--accent);
+      }
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        header {
+          padding: 36px 20px 28px;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* FEATURED SECTION */
+      .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 56px;
+      }
+
+      @media (max-width: 768px) {
+        .featured-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .featured-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .featured-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: #fff8e1;
+        color: #b8860b;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 3px 8px;
+        border-radius: 4px;
+        width: fit-content;
+        margin-bottom: 2px;
+      }
+
+      /* PROMO CARD */
+      .card-promo {
+        background: var(--text);
+        border: 1px solid var(--text);
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 36px 28px;
+        gap: 20px;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .card-promo:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-promo-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+      }
+
+      .card-promo h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.3;
+      }
+
+      .card-promo p {
+        font-size: 0.875rem;
+        color: #bbbbbb;
+        line-height: 1.7;
+      }
+
+      .btn-promo {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 12px 28px;
+        border-radius: 6px;
+        transition: background 0.15s ease;
+      }
+
+      .btn-promo:hover {
+        background: var(--accent-hover);
+      }
+
+      /* FOOTER CTA */
+      .footer-cta {
+        background: #111111;
+        padding: 48px 24px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         gap: 16px;
       }
 
-      header {
-        padding: 36px 20px 28px;
+      .footer-cta p {
+        font-family: "Inter", sans-serif;
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+        color: #faf8f4;
+        font-weight: 600;
       }
-    }
 
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
+      .footer-cta span {
+        font-size: 0.8rem;
+        color: #888;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
       }
-    }
 
-    /* FEATURED SECTION */
-    .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 56px;
-    }
+      /* FADE IN */
+      .card {
+        animation: fadeUp 0.4s ease both;
+      }
+      .card:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.15s;
+      }
+      .card:nth-child(4) {
+        animation-delay: 0.2s;
+      }
+      .card:nth-child(5) {
+        animation-delay: 0.25s;
+      }
+      .card:nth-child(6) {
+        animation-delay: 0.3s;
+      }
 
-    @media (max-width: 768px) {
-      .featured-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .featured-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .featured-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: #FFF8E1;
-      color: #B8860B;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 3px 8px;
-      border-radius: 4px;
-      width: fit-content;
-      margin-bottom: 2px;
-    }
-
-    /* PROMO CARD */
-    .card-promo {
-      background: var(--text);
-      border: 1px solid var(--text);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 36px 28px;
-      gap: 20px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card-promo:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-    }
-
-    .card-promo-label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-    }
-
-    .card-promo h3 {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #FFFFFF;
-      line-height: 1.3;
-    }
-
-    .card-promo p {
-      font-size: 0.875rem;
-      color: #BBBBBB;
-      line-height: 1.7;
-    }
-
-    .btn-promo {
-      display: inline-block;
-      background: var(--accent);
-      color: white;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 12px 28px;
-      border-radius: 6px;
-      transition: background 0.15s ease;
-    }
-
-    .btn-promo:hover {
-      background: var(--accent-hover);
-    }
-
-    /* FOOTER CTA */
-    .footer-cta {
-      background: #111111;
-      padding: 48px 24px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .footer-cta p {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      color: #FAF8F4;
-      font-weight: 600;
-    }
-
-    .footer-cta span {
-      font-size: 0.8rem;
-      color: #888;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-    }
-
-    /* FADE IN */
-    .card {
-      animation: fadeUp 0.4s ease both;
-    }
-    .card:nth-child(1) { animation-delay: 0.05s; }
-    .card:nth-child(2) { animation-delay: 0.10s; }
-    .card:nth-child(3) { animation-delay: 0.15s; }
-    .card:nth-child(4) { animation-delay: 0.20s; }
-    .card:nth-child(5) { animation-delay: 0.25s; }
-    .card:nth-child(6) { animation-delay: 0.30s; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="announcement">Selling in Dubai · JVC near Circle Mall or Circle Mall · No delivery · DM on WhatsApp</div>
-
-  <header>
-    <h1>Items <span>for Sale</span></h1>
-    <div class="header-meta">
-      <span><span class="dot"></span> Pickup varies per item — check each listing</span>
-      <span><span class="dot"></span> DM on WhatsApp to buy</span>
-    </div>
-  </header>
-
-  <main>
-    <div class="section-label">⭐ Featured</div>
-    <div class="featured-grid" id="featured-grid">
-      <!-- Populated by JS -->
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* LIGHTBOX */
+      .lightbox-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .lightbox-overlay.active {
+        display: flex;
+      }
+      .lightbox-overlay img {
+        max-width: 90vw;
+        max-height: 90vh;
+        border-radius: 8px;
+        object-fit: contain;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="announcement">
+      Selling in Dubai · JVC near Circle Mall or Circle Mall · No delivery · DM
+      on WhatsApp
     </div>
 
-    <div class="section-label">Electronics</div>
-    <div class="grid">
-
-      <!-- HISENSE TV -->
-      <div class="card" data-featured="true" data-id="hisense">
-        <img class="card-img" src="img/hisense_tv_1.jpg" alt="Hisense 65 TV" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">TV · 65"</span>
-          <div class="card-title">Hisense 65U6HQ 4K ULED Smart TV</div>
-          <div class="card-condition">2022 · Excellent condition — no scratches, no cracks, perfect screen. VIDAA Voice, Dolby Vision, Dolby Atmos. Leg stand included.</div>
-        </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC, near Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash or Bank Transfer</div>
+    <header>
+      <h1>Items <span>for Sale</span></h1>
+      <div class="header-meta">
+        <span
+          ><span class="dot"></span> Pickup varies per item — check each
+          listing</span
+        >
+        <span><span class="dot"></span> DM on WhatsApp to buy</span>
       </div>
-      <div class="card-footer">
-          <div class="card-price">AED 950 <span>AED</span></div>
-          <a class="btn-dm" data-item="hisense" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Hisense%2065%22%20TV%20for%20AED%20950" target="_blank">DM to Buy</a>
-        </div>
+    </header>
+
+    <main>
+      <div class="section-label">⭐ Featured</div>
+      <div class="featured-grid" id="featured-grid">
+        <!-- Populated by JS -->
       </div>
 
-      <!-- TCL TV -->
-      <div class="card">
-        <img class="card-img" src="img/tcl_tv_1.jpg" alt="TCL 55 TV" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">TV · 55"</span>
-          <div class="card-title">TCL 55P618 4K Android Smart TV</div>
-          <div class="card-condition">2021 · Fully working, no screen damage. Crack on bottom plastic bezel (frame only). Google Assistant, Chromecast. Leg stand + remote included.</div>
+      <div class="section-label">Electronics</div>
+      <div class="grid">
+        <!-- HISENSE TV -->
+        <div class="card" data-featured="true" data-id="hisense">
+          <img
+            class="card-img"
+            src="img/hisense_tv_1.jpg"
+            alt="Hisense 65 TV"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">TV · 65"</span>
+            <div class="card-title">Hisense 65U6HQ 4K ULED Smart TV</div>
+            <div class="card-condition">
+              2022 · Excellent condition — no scratches, no cracks, perfect
+              screen. VIDAA Voice, Dolby Vision, Dolby Atmos. Leg stand
+              included.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC,
+              near Circle Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              or Bank Transfer
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 950 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              data-item="hisense"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Hisense%2065%22%20TV%20for%20AED%20950"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
         </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC, near Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash or Bank Transfer</div>
+
+        <!-- TCL TV -->
+        <div class="card">
+          <img
+            class="card-img"
+            src="img/tcl_tv_1.jpg"
+            alt="TCL 55 TV"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">TV · 55"</span>
+            <div class="card-title">TCL 55P618 4K Android Smart TV</div>
+            <div class="card-condition">
+              2021 · Fully working, no screen damage. Crack on bottom plastic
+              bezel (frame only). Google Assistant, Chromecast. Leg stand +
+              remote included.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC,
+              near Circle Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              or Bank Transfer
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 400 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20TCL%2055%22%20TV%20for%20AED%20400"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
+        </div>
+
+        <!-- SAMSUNG SPEAKER -->
+        <div class="card">
+          <img
+            class="card-img"
+            src="img/samsung_sound_tower_1.jpg"
+            alt="Samsung Sound Tower"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">Speaker</span>
+            <div class="card-title">Samsung MX-T50 Sound Tower 500W</div>
+            <div class="card-condition">
+              2020 · Good condition. Small scratch on base, barely visible.
+              Bluetooth, Karaoke, LED lights. Original remote included (worn but
+              works).
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC,
+              near Circle Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              or Bank Transfer
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 550 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Samsung%20Sound%20Tower%20for%20AED%20550"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
+        </div>
+
+        <!-- GENESIS KEYBOARD -->
+        <div class="card">
+          <img
+            class="card-img"
+            src="img/genesis_keyboard_1.jpg"
+            alt="Genesis Rhod 400 RGB Keyboard"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">Gaming Keyboard</span>
+            <div class="card-title">Genesis Rhod 400 RGB Gaming Keyboard</div>
+            <div class="card-condition">
+              2021 · Good working condition. Normal wear from use. Logo lid on
+              spacebar area missing — cosmetic only, fully functional. Full size
+              with numpad, RGB backlight, USB wired.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle
+              Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              only
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 35 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Genesis%20Keyboard%20for%20AED%2035"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
+        </div>
+
+        <!-- PROMO CARD IN GRID -->
+        <div class="card-promo">
+          <span class="card-promo-label">Built with ❤️ in Dubai</span>
+          <h3>Want a site like this to sell your items?</h3>
+          <p>
+            Clean, mobile-friendly, with WhatsApp DM buttons — ready to share
+            with friends and family.
+          </p>
+          <a
+            class="btn-promo"
+            href="https://wa.me/971555555555?text=Hi!%20I%20want%20a%20website%20like%20yours%20to%20sell%20my%20items!"
+            target="_blank"
+            >Contact Me on WhatsApp</a
+          >
+        </div>
       </div>
-      <div class="card-footer">
-          <div class="card-price">AED 400 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20TCL%2055%22%20TV%20for%20AED%20400" target="_blank">DM to Buy</a>
+      <div class="section-label">Furniture</div>
+      <div class="grid">
+        <!-- IKEA TABLE -->
+        <div class="card" data-featured="true" data-id="ikea-table">
+          <img
+            class="card-img"
+            src="img/ikea_table_1.jpg"
+            alt="IKEA YPPERLIG Table"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">Dining Table</span>
+            <div class="card-title">IKEA YPPERLIG Dining Table 200cm</div>
+            <div class="card-condition">
+              2024 · Excellent condition. Minimal wear, scratches barely
+              visible. Ash veneer top, solid birch legs. Seats 6. Discontinued
+              model.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC,
+              near Circle Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              or Bank Transfer
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 500 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20IKEA%20Dining%20Table%20for%20AED%20500"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
+        </div>
+
+        <!-- FARMHOUSE TV UNIT -->
+        <div class="card" data-featured="true" data-id="farmhouse">
+          <img
+            class="card-img"
+            src="img/farmhouse_tv_unit_1.jpg"
+            alt="Farmhouse TV Unit"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">TV Unit</span>
+            <div class="card-title">Farmhouse TV Unit 152cm – Walnut</div>
+            <div class="card-condition">
+              2023 · Good condition. Minor cosmetic wear on corners from moving.
+              Barn door X-pattern, fits TVs up to 70". Doors and hinges fully
+              functional.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC,
+              near Circle Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              or Bank Transfer
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 250 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Farmhouse%20TV%20Unit%20for%20AED%20250"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
+        </div>
+
+        <!-- HOMEBOX TV UNIT -->
+        <div class="card">
+          <img
+            class="card-img"
+            src="img/homebox_tv_unit_1.jpg"
+            alt="HomeBox Vinci TV Unit"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">TV Unit</span>
+            <div class="card-title">HomeBox Vinci Low TV Unit</div>
+            <div class="card-condition">
+              2022 · Fair condition. Chipping on corner legs, peeling on front
+              edge, back panel slightly bowed. Fits TVs up to 70". Drawers
+              functional.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC,
+              near Circle Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              or Bank Transfer
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 175 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20HomeBox%20TV%20Unit%20for%20AED%20175"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
         </div>
       </div>
 
-      <!-- SAMSUNG SPEAKER -->
-      <div class="card">
-        <img class="card-img" src="img/samsung_sound_tower_1.jpg" alt="Samsung Sound Tower" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">Speaker</span>
-          <div class="card-title">Samsung MX-T50 Sound Tower 500W</div>
-          <div class="card-condition">2020 · Good condition. Small scratch on base, barely visible. Bluetooth, Karaoke, LED lights. Original remote included (worn but works).</div>
+      <div class="section-label">Home & Other</div>
+      <div class="grid">
+        <!-- IRONING BOARD -->
+        <div class="card">
+          <img
+            class="card-img"
+            src="img/ironing_board_1.jpg"
+            alt="IKEA DÄNKA Ironing Board"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">Home</span>
+            <div class="card-title">IKEA DÄNKA Ironing Board 120x37cm</div>
+            <div class="card-condition">
+              Good working condition. Minor wear on cover. Adjustable height
+              69–95cm, steel frame. Also available for pickup at Circle Mall.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle
+              Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              only
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 70 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Ironing%20Board%20for%20AED%2070"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
         </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC, near Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash or Bank Transfer</div>
-      </div>
-      <div class="card-footer">
-          <div class="card-price">AED 550 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Samsung%20Sound%20Tower%20for%20AED%20550" target="_blank">DM to Buy</a>
+
+        <!-- TOASTER -->
+        <div class="card">
+          <img
+            class="card-img"
+            src="img/toaster_1.jpg"
+            alt="Geepas Toaster"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">Kitchen</span>
+            <div class="card-title">Geepas GBT9895 4-Slice Toaster</div>
+            <div class="card-condition">
+              Good working condition. 1100W, 7 browning levels,
+              frozen/reheat/cancel functions. Removable crumb tray. Also
+              available at Circle Mall.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle
+              Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              only
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 30 <span>AED</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Geepas%20Toaster%20for%20AED%2030"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
+        </div>
+
+        <!-- PUZZLES -->
+        <div class="card">
+          <img
+            class="card-img"
+            src="img/puzzles_1.jpg"
+            alt="Jigsaw Puzzles"
+            onerror="
+              this.style.display = 'none';
+              this.nextElementSibling.style.display = 'flex';
+            "
+          />
+          <div class="card-img-placeholder" style="display: none">
+            Photo coming
+          </div>
+          <div class="card-body">
+            <span class="card-tag">Puzzles · 3 available</span>
+            <div class="card-title">Premium Jigsaw Puzzles</div>
+            <div class="card-condition">
+              New York Puzzle Co & Eurographics. Desert Rider 1000pc (sealed)
+              AED 80 · Fairy Tales 500pc AED 50 · Kandinsky 1000pc (open) AED
+              70. Bundle all 3: AED 170.
+            </div>
+          </div>
+          <div class="card-pickup">
+            <div class="card-pickup-row">
+              <span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle
+              Mall
+            </div>
+            <div class="card-pickup-row">
+              <span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash
+              only
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">AED 50+ <span>each</span></div>
+            <a
+              class="btn-dm"
+              href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20puzzles"
+              target="_blank"
+              ><i
+                class="fab fa-whatsapp"
+                style="margin-right: 6px; font-size: 16px"
+              ></i
+              >DM to Buy</a
+            >
+          </div>
         </div>
       </div>
+    </main>
 
-
-      <!-- GENESIS KEYBOARD -->
-      <div class="card">
-        <img class="card-img" src="img/genesis_keyboard_1.jpg" alt="Genesis Rhod 400 RGB Keyboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">Gaming Keyboard</span>
-          <div class="card-title">Genesis Rhod 400 RGB Gaming Keyboard</div>
-          <div class="card-condition">2021 · Good working condition. Normal wear from use. Logo lid on spacebar area missing — cosmetic only, fully functional. Full size with numpad, RGB backlight, USB wired.</div>
-        </div>
-        <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash only</div>
-      </div>
-        <div class="card-footer">
-          <div class="card-price">AED 35 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Genesis%20Keyboard%20for%20AED%2035" target="_blank">DM to Buy</a>
-        </div>
-      </div>
-
-      <!-- PROMO CARD IN GRID -->
-      <div class="card-promo">
-        <span class="card-promo-label">Built with ❤️ in Dubai</span>
-        <h3>Want a site like this to sell your items?</h3>
-        <p>Clean, mobile-friendly, with WhatsApp DM buttons — ready to share with friends and family.</p>
-        <a class="btn-promo" href="https://wa.me/971555555555?text=Hi!%20I%20want%20a%20website%20like%20yours%20to%20sell%20my%20items!" target="_blank">Contact Me on WhatsApp</a>
-      </div>
-
+    <div class="footer-cta">
+      <p>Want a page like this to sell your stuff?</p>
+      <span
+        >Clean, simple, shareable — your own personal second-hand
+        storefront</span
+      >
+      <a
+        class="btn-promo"
+        href="https://wa.me/971555555555?text=Hi!%20I%20want%20a%20website%20like%20yours%20to%20sell%20my%20items!"
+        target="_blank"
+        >Contact Me on WhatsApp</a
+      >
     </div>
-    <div class="section-label">Furniture</div>
-    <div class="grid">
 
-      <!-- IKEA TABLE -->
-      <div class="card" data-featured="true" data-id="ikea-table">
-        <img class="card-img" src="img/ikea_table_1.jpg" alt="IKEA YPPERLIG Table" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">Dining Table</span>
-          <div class="card-title">IKEA YPPERLIG Dining Table 200cm</div>
-          <div class="card-condition">2024 · Excellent condition. Minimal wear, scratches barely visible. Ash veneer top, solid birch legs. Seats 6. Discontinued model.</div>
-        </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC, near Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash or Bank Transfer</div>
-      </div>
-      <div class="card-footer">
-          <div class="card-price">AED 500 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20IKEA%20Dining%20Table%20for%20AED%20500" target="_blank">DM to Buy</a>
-        </div>
-      </div>
-
-      <!-- FARMHOUSE TV UNIT -->
-      <div class="card" data-featured="true" data-id="farmhouse">
-        <img class="card-img" src="img/farmhouse_tv_unit_1.jpg" alt="Farmhouse TV Unit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">TV Unit</span>
-          <div class="card-title">Farmhouse TV Unit 152cm – Walnut</div>
-          <div class="card-condition">2023 · Good condition. Minor cosmetic wear on corners from moving. Barn door X-pattern, fits TVs up to 70". Doors and hinges fully functional.</div>
-        </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC, near Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash or Bank Transfer</div>
-      </div>
-      <div class="card-footer">
-          <div class="card-price">AED 250 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Farmhouse%20TV%20Unit%20for%20AED%20250" target="_blank">DM to Buy</a>
-        </div>
-      </div>
-
-      <!-- HOMEBOX TV UNIT -->
-      <div class="card">
-        <img class="card-img" src="img/homebox_tv_unit_1.jpg" alt="HomeBox Vinci TV Unit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">TV Unit</span>
-          <div class="card-title">HomeBox Vinci Low TV Unit</div>
-          <div class="card-condition">2022 · Fair condition. Chipping on corner legs, peeling on front edge, back panel slightly bowed. Fits TVs up to 70". Drawers functional.</div>
-        </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;JVC, near Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash or Bank Transfer</div>
-      </div>
-      <div class="card-footer">
-          <div class="card-price">AED 175 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20HomeBox%20TV%20Unit%20for%20AED%20175" target="_blank">DM to Buy</a>
-        </div>
-      </div>
-
+    <footer>
+      <p>All items located in <strong>JVC, near Circle Mall, Dubai</strong></p>
+    </footer>
+    <div class="lightbox-overlay" id="lightbox">
+      <img id="lightbox-img" src="" alt="" />
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const featuredGrid = document.getElementById("featured-grid");
+        const featuredCards = document.querySelectorAll(
+          '.card[data-featured="true"]',
+        );
 
-    <div class="section-label">Home & Other</div>
-    <div class="grid">
+        featuredCards.forEach(function (card) {
+          // Clone the card
+          const clone = card.cloneNode(true);
 
-      <!-- IRONING BOARD -->
-      <div class="card">
-        <img class="card-img" src="img/ironing_board_1.jpg" alt="IKEA DÄNKA Ironing Board" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">Home</span>
-          <div class="card-title">IKEA DÄNKA Ironing Board 120x37cm</div>
-          <div class="card-condition">Good working condition. Minor wear on cover. Adjustable height 69–95cm, steel frame. Also available for pickup at Circle Mall.</div>
-        </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash only</div>
-      </div>
-      <div class="card-footer">
-          <div class="card-price">AED 70 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Ironing%20Board%20for%20AED%2070" target="_blank">DM to Buy</a>
-        </div>
-      </div>
+          // Add featured star tag inside card-body, before existing tag
+          const cardBody = clone.querySelector(".card-body");
+          const existingTag = cardBody.querySelector(".card-tag");
+          const starTag = document.createElement("span");
+          starTag.className = "featured-tag";
+          starTag.innerHTML = "⭐ Featured";
+          cardBody.insertBefore(starTag, existingTag);
 
-      <!-- TOASTER -->
-      <div class="card">
-        <img class="card-img" src="img/toaster_1.jpg" alt="Geepas Toaster" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">Kitchen</span>
-          <div class="card-title">Geepas GBT9895 4-Slice Toaster</div>
-          <div class="card-condition">Good working condition. 1100W, 7 browning levels, frozen/reheat/cancel functions. Removable crumb tray. Also available at Circle Mall.</div>
-        </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash only</div>
-      </div>
-      <div class="card-footer">
-          <div class="card-price">AED 30 <span>AED</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20Geepas%20Toaster%20for%20AED%2030" target="_blank">DM to Buy</a>
-        </div>
-      </div>
+          // Also add star tag to original card
+          const origBody = card.querySelector(".card-body");
+          const origTag = origBody.querySelector(".card-tag");
+          const origStar = document.createElement("span");
+          origStar.className = "featured-tag";
+          origStar.innerHTML = "⭐ Featured";
+          origBody.insertBefore(origStar, origTag);
 
-      <!-- PUZZLES -->
-      <div class="card">
-        <img class="card-img" src="img/puzzles_1.jpg" alt="Jigsaw Puzzles" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="card-img-placeholder" style="display:none">Photo coming</div>
-        <div class="card-body">
-          <span class="card-tag">Puzzles · 3 available</span>
-          <div class="card-title">Premium Jigsaw Puzzles</div>
-          <div class="card-condition">New York Puzzle Co & Eurographics. Desert Rider 1000pc (sealed) AED 80 · Fairy Tales 500pc AED 50 · Kandinsky 1000pc (open) AED 70. Bundle all 3: AED 170.</div>
-        </div>
-                    <div class="card-pickup">
-        <div class="card-pickup-row"><span class="icon">📍</span> <strong>Pickup:</strong>&nbsp;Circle Mall</div>
-        <div class="card-pickup-row"><span class="icon">💳</span> <strong>Payment:</strong>&nbsp;Cash only</div>
-      </div>
-      <div class="card-footer">
-          <div class="card-price">AED 50+ <span>each</span></div>
-          <a class="btn-dm" href="https://wa.me/971555555555?text=Hi!%20I'm%20interested%20in%20the%20puzzles" target="_blank">DM to Buy</a>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <div class="footer-cta">
-    <p>Want a page like this to sell your stuff?</p>
-    <span>Clean, simple, shareable — your own personal second-hand storefront</span>
-    <a class="btn-promo" href="https://wa.me/971555555555?text=Hi!%20I%20want%20a%20website%20like%20yours%20to%20sell%20my%20items!" target="_blank">Contact Me on WhatsApp</a>
-  </div>
-
-  <footer>
-    <p>All items located in <strong>JVC, near Circle Mall, Dubai</strong></p>
-
-  </footer>
-
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const featuredGrid = document.getElementById('featured-grid');
-      const featuredCards = document.querySelectorAll('.card[data-featured="true"]');
-
-      featuredCards.forEach(function(card) {
-        // Clone the card
-        const clone = card.cloneNode(true);
-
-        // Add featured star tag inside card-body, before existing tag
-        const cardBody = clone.querySelector('.card-body');
-        const existingTag = cardBody.querySelector('.card-tag');
-        const starTag = document.createElement('span');
-        starTag.className = 'featured-tag';
-        starTag.innerHTML = '⭐ Featured';
-        cardBody.insertBefore(starTag, existingTag);
-
-        // Also add star tag to original card
-        const origBody = card.querySelector('.card-body');
-        const origTag = origBody.querySelector('.card-tag');
-        const origStar = document.createElement('span');
-        origStar.className = 'featured-tag';
-        origStar.innerHTML = '⭐ Featured';
-        origBody.insertBefore(origStar, origTag);
-
-        featuredGrid.appendChild(clone);
+          featuredGrid.appendChild(clone);
+        });
+        // Lightbox
+      document.querySelectorAll(".card-img").forEach(function (img) {
+        img.style.cursor = "zoom-in";
+        img.addEventListener("click", function () {
+          document.getElementById("lightbox-img").src = this.src;
+          document.getElementById("lightbox").classList.add("active");
+        });
       });
-    });
-  </script>
-</body>
+      document
+        .getElementById("lightbox")
+        .addEventListener("click", function () {
+          this.classList.remove("active");
+        });
+      });
+
+      
+    </script>
+  </body>
 </html>
